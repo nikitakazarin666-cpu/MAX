@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>MAX для бизнеса — ENGI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg-deep: #060D24;
+    --bg-card: #0D1535;
+    --bg-card-2: #111C40;
+    --blue-core: #0057FF;
+    --blue-bright: #1A8CFF;
+    --blue-glow: #00AAFF;
+    --blue-pale: rgba(0, 100, 255, 0.12);
+    --text-primary: #FFFFFF;
+    --text-secondary: #7A93C8;
+    --text-muted: #4A6090;
+    --border: rgba(255,255,255,0.07);
+    --border-blue: rgba(0, 140, 255, 0.25);
+    --glow-shadow: 0 0 40px rgba(0, 100, 255, 0.2);
+    --radius-card: 16px;
+    --radius-sm: 10px;
+    --font-display: 'Manrope', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --app-width: 390px;
+    --nav-height: 64px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    max-width: var(--app-width);
+    margin: 0 auto;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ─── PARTICLES CANVAS ─── */
+  #particles {
+    position: fixed;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: var(--app-width);
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  /* ─── GLOBAL LAYOUT ─── */
+  .app-content {
+    position: relative;
+    z-index: 1;
+    padding-bottom: calc(var(--nav-height) + 16px);
+  }
+
+  /* ─── TOP BAR ─── */
+  .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: rgba(6, 13, 36, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
+  }
+
+  .logo span {
+    color: var(--blue-glow);
+  }
+
+  .top-badge {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--blue-bright);
+    background: rgba(0, 140, 255, 0.1);
+    border: 1px solid rgba(0, 140, 255, 0.25);
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    padding: 36px 20px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--blue-glow);
+    margin-bottom: 18px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--blue-glow);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+
+  .hero-title .accent {
+    background: linear-gradient(135deg, #1A8CFF 0%, #00D4FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    font-weight: 400;
+  }
+
+  .hero-image-wrap {
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 16/9;
+    background: var(--bg-card);
+    border: 1px solid var(--border-blue);
+    box-shadow: var(--glow-shadow), inset 0 1px 0 rgba(255,255,255,0.05);
+    margin-bottom: 30px;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+
+  .hero-image-placeholder .ph-icon {
+    width: 40px;
+    height: 40px;
+    border: 1.5px solid var(--text-muted);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.4;
+  }
+
+  .funnel-bar {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border-blue);
+    border-radius: 12px;
+    padding: 14px 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .funnel-bar::-webkit-scrollbar { display: none; }
+
+  .funnel-step {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--blue-bright);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .funnel-arrow {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin: 0 6px;
+    flex-shrink: 0;
+  }
+
+  /* ─── SECTION HEADER ─── */
+  .section {
+    padding: 32px 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--blue-glow);
+    margin-bottom: 10px;
+    opacity: 0.8;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  .section-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+  }
+
+  /* ─── CARDS ─── */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: 20px;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+
+  .card:active {
+    transform: scale(0.985);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,140,255,0.4), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .card:hover::before { opacity: 1; }
+
+  .card.glow {
+    border-color: var(--border-blue);
+    box-shadow: 0 4px 30px rgba(0, 90, 255, 0.12);
+  }
+
+  .card-num {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--blue-glow);
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    opacity: 0.7;
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .card-text {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+  }
+
+  .card-image {
+    width: 100%;
+    aspect-ratio: 16/8;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+    margin-top: 16px;
+    background: var(--bg-card-2);
+    display: block;
+  }
+
+  /* ─── SERVICE ITEMS ─── */
+  .service-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .service-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--bg-card-2);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+  }
+
+  .service-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--blue-glow);
+    margin-top: 5px;
+    flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(0, 170, 255, 0.6);
+  }
+
+  .service-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+
+  /* ─── FUNNEL CASES ─── */
+  .case-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-blue);
+    border-radius: var(--radius-card);
+    padding: 18px;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .case-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--blue-core), var(--blue-glow));
+    border-radius: 0 0 var(--radius-card) var(--radius-card);
+  }
+
+  .case-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--blue-bright);
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .case-flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .case-step {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: rgba(255,255,255,0.05);
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+
+  .case-arr {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  /* ─── PROCESS STEPS ─── */
+  .process-step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .process-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 42px;
+    bottom: -10px;
+    width: 1px;
+    background: linear-gradient(to bottom, rgba(0,140,255,0.4), transparent);
+  }
+
+  .step-num-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--border-blue);
+    background: rgba(0,100,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--blue-bright);
+  }
+
+  .step-content {}
+
+  .step-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 5px;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ─── AUDIENCE GRID ─── */
+  .audience-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .audience-pill {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.3;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .audience-pill:hover {
+    border-color: var(--border-blue);
+    color: var(--text-primary);
+  }
+
+  /* ─── RESULTS LIST ─── */
+  .result-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .result-item:last-child {
+    border-bottom: none;
+  }
+
+  .result-check {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    background: rgba(0,140,255,0.12);
+    border: 1px solid rgba(0,140,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .result-check svg {
+    width: 10px;
+    height: 10px;
+    stroke: var(--blue-glow);
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .result-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* ─── CTA ─── */
+  .cta-section {
+    padding: 32px 20px 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .cta-block {
+    background: linear-gradient(135deg, rgba(0,80,230,0.2) 0%, rgba(0,160,255,0.12) 100%);
+    border: 1px solid rgba(0,140,255,0.35);
+    border-radius: var(--radius-card);
+    padding: 28px 22px;
+    text-align: center;
+    box-shadow: 0 8px 40px rgba(0,100,255,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,200,255,0.6), transparent);
+  }
+
+  .cta-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  .cta-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .btn-primary {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #0057FF 0%, #0096FF 100%);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.2px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0, 87, 255, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .btn-primary:active {
+    transform: scale(0.96);
+    box-shadow: 0 2px 10px rgba(0, 87, 255, 0.3);
+  }
+
+  .btn-secondary {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    color: var(--blue-bright);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 14px;
+    border: 1px solid rgba(0,140,255,0.3);
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: border-color 0.2s, background 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .btn-secondary:active {
+    background: rgba(0,140,255,0.08);
+  }
+
+  /* ─── BOTTOM NAV ─── */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: var(--app-width);
+    height: var(--nav-height);
+    background: rgba(6, 13, 36, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 8px;
+    z-index: 100;
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+  }
+
+  .nav-item:active {
+    background: rgba(255,255,255,0.05);
+  }
+
+  .nav-icon {
+    width: 22px;
+    height: 22px;
+    stroke: var(--text-muted);
+    fill: none;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.2s;
+  }
+
+  .nav-item.active .nav-icon {
+    stroke: var(--blue-glow);
+  }
+
+  .nav-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.2px;
+    transition: color 0.2s;
+  }
+
+  .nav-item.active .nav-label {
+    color: var(--blue-glow);
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0;
+  }
+
+  /* ─── STATS ROW ─── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin: 24px 0;
+  }
+
+  .stat-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 10px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--blue-glow);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  /* ─── SCROLL ANIMATIONS ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── SECTION IDs for nav ─── */
+  #home, #services, #process, #start {}
+
+  /* ─── GLOW BLOB ─── */
+  .glow-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 0;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="logo">ENGI <span>×</span> MAX</div>
+  <div class="top-badge">Мини-приложение</div>
+</div>
+
+<!-- APP CONTENT -->
+<div class="app-content">
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-eyebrow">Для бизнеса в России</div>
+    <h1 class="hero-title">
+      От канала<br>до <span class="accent">заявок</span><br>в MAX
+    </h1>
+    <p class="hero-sub">
+      Собираем полную систему работы с клиентами — канал, контент, бот, мини-приложение и реклама — как единую воронку.
+    </p>
+    <div class="hero-image-wrap">
+      <img src="images/hero.webp" alt="MAX для бизнеса" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="hero-image-placeholder">
+        <div class="ph-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m9 10 2 2 4-4"/></svg>
+        </div>
+        <span>images/hero.webp</span>
+      </div>
+    </div>
+    <div class="funnel-bar">
+      <span class="funnel-step">Реклама</span>
+      <span class="funnel-arrow">→</span>
+      <span class="funnel-step">Канал</span>
+      <span class="funnel-arrow">→</span>
+      <span class="funnel-step">Бот</span>
+      <span class="funnel-arrow">→</span>
+      <span class="funnel-step">Мини-апп</span>
+      <span class="funnel-arrow">→</span>
+      <span class="funnel-step">Заявки</span>
+    </div>
+  </section>
+
+  <!-- WHY MAX -->
+  <section class="section reveal">
+    <div class="section-label">Возможности</div>
+    <h2 class="section-title">MAX — не просто мессенджер</h2>
+    <p class="section-desc">Клиент видит рекламу, переходит в MAX, получает материал, оставляет заявку — не покидая привычный интерфейс.</p>
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-num">7</div>
+        <div class="stat-label">инструментов в системе</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">1</div>
+        <div class="stat-label">единая воронка</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">под ключ</div>
+        <div class="stat-label">запуск</div>
+      </div>
+    </div>
+    <div class="card glow">
+      <div class="card-text">Мы не создаём набор разрозненных инструментов. Продумываем весь путь клиента и связываем отдельные элементы в систему, которая работает.</div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="section reveal">
+    <div class="section-label">Что создаём</div>
+    <h2 class="section-title">Полная система для бизнеса</h2>
+
+    <!-- Card 1 -->
+    <div class="card glow">
+      <div class="card-num">01</div>
+      <div class="card-title">Официальный канал в MAX</div>
+      <div class="card-text">Создаём канал на организацию, продумываем название и позиционирование, оформляем описание и визуальный стиль. Канал готов к приёму первых подписчиков.</div>
+      <img class="card-image" src="images/channel.webp" alt="Канал в MAX" onerror="this.style.background='var(--bg-card-2)'; this.alt=''; this.style.minHeight='60px'">
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card reveal">
+      <div class="card-num">02</div>
+      <div class="card-title">Упаковка и экспертный контент</div>
+      <div class="card-text">Изучаем продукт и аудиторию. Готовим стартовые 7–10 публикаций: закреплённый пост, описание, экспертные материалы, кейсы, продающие посты.</div>
+      <div class="service-list">
+        <div class="service-item"><div class="service-dot"></div><div class="service-text">Закреплённый пост и описание компании</div></div>
+        <div class="service-item"><div class="service-dot"></div><div class="service-text">Экспертные публикации и ответы на вопросы</div></div>
+        <div class="service-item"><div class="service-dot"></div><div class="service-text">Кейсы, продающие посты, призывы к действию</div></div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card reveal">
+      <div class="card-num">03</div>
+      <div class="card-title">Чат-бот для квалификации заявок</div>
+      <div class="card-text">Бот уточняет запрос клиента до общения с менеджером. Передаёт структурированную заявку, рассчитывает стоимость, записывает на консультацию, отправляет данные в CRM.</div>
+      <img class="card-image" src="images/bot.webp" alt="Чат-бот" onerror="this.style.background='var(--bg-card-2)'; this.alt=''; this.style.minHeight='60px'">
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card reveal">
+      <div class="card-num">04</div>
+      <div class="card-title">Мини-приложение внутри MAX</div>
+      <div class="card-text">Когда диалога с ботом недостаточно. Клиент открывает приложение в MAX и выбирает товар, рассчитывает стоимость, записывается на удобное время или оформляет заказ.</div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="card reveal">
+      <div class="card-num">05</div>
+      <div class="card-title">Воронка привлечения клиентов</div>
+      <div class="card-text">Строим механику вокруг реального поведения клиентов, а не вокруг инструментов. Примеры:</div>
+      <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px;">
+        <div class="case-card">
+          <div class="case-label">Мебельная компания</div>
+          <div class="case-flow">
+            <span class="case-step">Проект кухни</span><span class="case-arr">→</span>
+            <span class="case-step">Расчёт</span><span class="case-arr">→</span>
+            <span class="case-step">Бот</span><span class="case-arr">→</span>
+            <span class="case-step">Замерщик</span>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-label">Автосервис</div>
+          <div class="case-flow">
+            <span class="case-step">Чек-лист</span><span class="case-arr">→</span>
+            <span class="case-step">Подписка</span><span class="case-arr">→</span>
+            <span class="case-step">Акция</span><span class="case-arr">→</span>
+            <span class="case-step">Запись</span>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-label">Детский центр</div>
+          <div class="case-flow">
+            <span class="case-step">Тест</span><span class="case-arr">→</span>
+            <span class="case-step">Бот</span><span class="case-arr">→</span>
+            <span class="case-step">Программа</span><span class="case-arr">→</span>
+            <span class="case-step">Пробное</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="card reveal">
+      <div class="card-num">06</div>
+      <div class="card-title">Реклама в VK Ads и Яндекс.Директе</div>
+      <div class="card-text">Запускаем трафик на канал, бота или мини-приложение. Создаём конкретный вход: чек-лист, тест, калькулятор, специальное предложение. Так у человека появляется причина перейти в MAX.</div>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="card reveal">
+      <div class="card-num">07</div>
+      <div class="card-title">Лендинги под отдельные офферы</div>
+      <div class="card-text">Короткая посадочная страница с одним предложением и одним целевым действием. Быстрый запуск теста — понять, стоит ли масштабировать предложение.</div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="section reveal">
+    <div class="section-label">Как работаем</div>
+    <h2 class="section-title">Пять шагов от идеи до заявок</h2>
+    <p class="section-desc">Каждый этап — на основе реальных данных, без лишних инструментов.</p>
+
+    <div style="margin-top: 28px;">
+      <div class="process-step">
+        <div class="step-num-wrap">1</div>
+        <div class="step-content">
+          <div class="step-title">Анализируем бизнес</div>
+          <div class="step-desc">Разбираем продукт, аудиторию, средний чек, текущие каналы и путь клиента до покупки.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num-wrap">2</div>
+        <div class="step-content">
+          <div class="step-title">Проектируем воронку</div>
+          <div class="step-desc">Определяем нужные элементы. Не добавляем инструменты ради количества — каждый решает конкретную задачу.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num-wrap">3</div>
+        <div class="step-content">
+          <div class="step-title">Создаём и настраиваем</div>
+          <div class="step-desc">Разрабатываем тексты, дизайн, сценарии, техническую часть и аналитику.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num-wrap">4</div>
+        <div class="step-content">
+          <div class="step-title">Запускаем трафик</div>
+          <div class="step-desc">Тестируем объявления, аудитории и офферы в VK Ads или Яндекс.Директе.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num-wrap">5</div>
+        <div class="step-content">
+          <div class="step-title">Считаем результат</div>
+          <div class="step-desc">Переходы, запуски бота, подписки, заявки, стоимость заявки. Масштабируем или меняем механику — на основе цифр.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section class="section reveal">
+    <div class="section-label">Кому подходит</div>
+    <h2 class="section-title">Бизнесы с длинным циклом сделки</h2>
+    <p class="section-desc">Особенно эффективно там, где клиент не покупает с первого касания.</p>
+    <div class="audience-grid">
+      <div class="audience-pill">Автосервисы и детейлинг</div>
+      <div class="audience-pill">Мебель и кухни</div>
+      <div class="audience-pill">Строительство и ремонт</div>
+      <div class="audience-pill">Образование</div>
+      <div class="audience-pill">Детские центры</div>
+      <div class="audience-pill">Фитнес</div>
+      <div class="audience-pill">Клиники</div>
+      <div class="audience-pill">Туризм</div>
+      <div class="audience-pill">Локальные услуги</div>
+      <div class="audience-pill">Высокий чек</div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="start" class="section reveal">
+    <div class="section-label">Результат</div>
+    <h2 class="section-title">Что получает бизнес</h2>
+    <p class="section-desc">Не набор инструментов, а готовая система от первого касания до закрытой сделки.</p>
+    <div style="margin-top: 16px;">
+      <div class="result-item">
+        <div class="result-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div class="result-text">Официальный канал в MAX с профессиональной упаковкой</div>
+      </div>
+      <div class="result-item">
+        <div class="result-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div class="result-text">Стартовый контент — 7–10 публикаций</div>
+      </div>
+      <div class="result-item">
+        <div class="result-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div class="result-text">Чат-бот для обработки и квалификации обращений</div>
+      </div>
+      <div class="result-item">
+        <div class="result-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div class="result-text">Мини-приложение при необходимости</div>
+      </div>
+      <div class="result-item">
+        <div class="result-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div class="result-text">Посадочные страницы под офферы</div>
+      </div>
+      <div class="result-item">
+        <div class="result-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div class="result-text">Реклама в VK Ads или Яндекс.Директе</div>
+      </div>
+      <div class="result-item">
+        <div class="result-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div class="result-text">Аналитика подписчиков и заявок</div>
+      </div>
+      <div class="result-item">
+        <div class="result-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div class="result-text">Понятный план дальнейшего развития</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section reveal">
+    <div class="cta-block">
+      <h2 class="cta-title">Начните с тестового запуска</h2>
+      <p class="cta-desc">Канал — 7–10 постов — оффер — бот — реклама — первые заявки. Расскажите о бизнесе, предложим как выглядит ваша воронка в MAX.</p>
+      <a href="#" class="btn-primary">Получить разбор проекта</a>
+      <a href="#" class="btn-secondary">Обсудить проект</a>
+    </div>
+  </section>
+
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <a href="#home" class="nav-item active" onclick="setActive(this)">
+    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V21a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 22V12h6v10"/></svg>
+    <span class="nav-label">Главная</span>
+  </a>
+  <a href="#services" class="nav-item" onclick="setActive(this)">
+    <svg class="nav-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    <span class="nav-label">Услуги</span>
+  </a>
+  <a href="#process" class="nav-item" onclick="setActive(this)">
+    <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+    <span class="nav-label">Процесс</span>
+  </a>
+  <a href="#start" class="nav-item" onclick="setActive(this)">
+    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.5 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 013.41 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.37a16 16 0 006.07 6.07l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    <span class="nav-label">Старт</span>
+  </a>
+</nav>
+
+<script>
+  // ─── PARTICLES ───
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  canvas.width = 390;
+  canvas.height = window.innerHeight;
+
+  const particles = [];
+  const count = 50;
+
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.5 + 0.3,
+      dx: (Math.random() - 0.5) * 0.3,
+      dy: (Math.random() - 0.5) * 0.3,
+      a: Math.random() * 0.6 + 0.1
+    });
+  }
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0, 150, 255, ${p.a})`;
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+    });
+
+    // draw connections
+    particles.forEach((a, i) => {
+      particles.slice(i + 1).forEach(b => {
+        const dist = Math.hypot(a.x - b.x, a.y - b.y);
+        if (dist < 80) {
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(0, 120, 255, ${0.12 * (1 - dist / 80)})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      });
+    });
+
+    requestAnimationFrame(drawParticles);
+  }
+
+  drawParticles();
+
+  // ─── SCROLL REVEAL ───
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // ─── NAV ACTIVE ───
+  function setActive(el) {
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // ─── SCROLL SPY ───
+  const sections = ['home', 'services', 'process', 'start'];
+  const navItems = document.querySelectorAll('.nav-item');
+
+  window.addEventListener('scroll', () => {
+    let current = 'home';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 120) current = id;
+    });
+    navItems.forEach(item => {
+      item.classList.remove('active');
+      if (item.getAttribute('href') === '#' + current) item.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
